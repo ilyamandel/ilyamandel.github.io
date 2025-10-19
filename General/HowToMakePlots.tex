@@ -1,0 +1,83 @@
+%\documentclass[linenumbers,twocolumn]{aastex7}
+\documentclass[onecolumn]{aastex7}
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bel}[1]{\begin{equation}\label{#1}}
+\newcommand{\ba}{\begin{eqnarray}}
+\newcommand{\ea}{\end{eqnarray}}
+\newcommand{\bal}[1]{\begin{eqnarray}\label{#1}}
+
+\newcommand{\Msun}{M$_\odot$}
+\newcommand{\Header}[1]{{\large{\bf{#1}}}}
+
+
+\begin{document}
+
+\title{Ten commandments of plotting}
+\author[0000-0002-6134-8946]{Ilya Mandel}
+\affiliation{School of Physics and Astronomy, Monash University, Clayton VIC 3800, Australia}
+\affiliation{OzGrav: The ARC Centre of Excellence for Gravitational Wave Discovery, Australia}
+\email{ilya.mandel@monash.edu}
+
+
+\begin{abstract}
+I try to share some hard-learned advice on scientific plotting for those who may still be relatively new to research.
+\end{abstract}
+
+\maketitle
+
+\vspace{0.1in}
+
+\Header{1. Make plots for yourself}
+
+Eventually, you will want to share your plots with others -- your collaborators, thesis examiners,  journal readers... But first and foremost, you are making them for yourself, to help you visualise and understand your data and/or models.  That said, you may find it useful to try to explain your plot to others (an imaginary rubber ducky will do), to make sure you are not skipping over important details just because they look familiar.  The suggestions below try to provide some advice for how to do that most efficiently.  But the key idea is very simple: you want to make plots that address the questions you are interested in, and then critically look at the answers they provide!  
+
+\Header{2. Always plot before analysing}
+
+It's tempting to jump straight into analysing or fitting data, or interpreting models.  But plot things first.  You'll save yourself from embarrassment if it turns out that you were misinterpreting what's stored in the data file or what units are used for model outputs.  Plotting may help you avoid misleading conclusions from summary statistics (see, e.g., \href{https://en.wikipedia.org/wiki/Anscombe\%27s_quartet}{Anscombe's quartet}).  And you will see trends that you may not have spotted otherwise.  
+
+\Header{3. Build up your plots}
+
+It is tempting to look immediately at the final result of a model or a fit.  Resist that temptation: start small and build up to make sure you understand all of the ingredients.  If your calculation involves multiple steps, plot the results of intermediate steps; look at auxiliary quantities; make sure you believe and understand your models / analysis.
+
+\Header{4. Sketch before you plot}
+
+This one is particularly useful for theorists.  A good theorist can come up with a vaguely plausible interpretation (often multiple interpretations) for most trends.  However, doing so after you've already looked at the results of a model can lead you to explain away surprising behaviour without learning much.  Try to sketch by hand what you expect to see before making a plot.  Then compare the plot with your sketch.  If they differ significantly, and after you've carefully checked that the difference is not due to a bug in your code, you will likely have learned something important -- e.g., that an effect that you assumed was subdominant is actually playing a key role in shaping the results.
+
+\Header{5. Label your plots}
+
+This one seems trivial, but in a rush, you might omit labelling the axes or writing down correct units.  While this may feel OK for preliminary plots, when you still remember exactly what is being plotted, you may no longer remember what you plotted come next week (see next item).  It is best to get into the habit of always properly labelling.  And make sure that these labels are legible, since eventually you may want to show these plots to others or embed them in a document.
+
+\Header{6. Annotate and save your plots}
+
+It is often useful to refer to plots you made earlier in the project.  Save your plots.  When you do, make sure you write down the details of how you made the plot (code and/or data version? assumptions or input parameters?).  This may save you hours later on when trying to understand why you no longer see the results you vaguely remember having seen weeks ago.  For example, if you are going to post your plots on Slack, take the time to carefully describe exactly what is being plotted: it is good practice for presenting your work and may prove useful when you return to these plots later.
+
+\Header{7. Do not make too many plots}
+
+No reasonable person can stare at dozens or hundreds of plots and carefully and critically interpret them all.  Start by carefully analysing one data set or one model variation.  Look at all of the plots, make sure you understand them and are comfortable with them.  Then think carefully about how to bring in other data / models.  Perhaps you will want to make comparison plots, or plot summary statistics rather than individual values.
+
+\Header{8. Think of what quantities to plot}
+
+Remember that you are plotting for yourself first and foremost.  What is it that you want to see in order to best understand your data or your model?  Does it tell the right story?  Do the key take-aways jump out from the figure?  The answer to this question includes not only the parameters, but also their scales.  For example, if you want to check whether a simple analytical model matches the data at an order of magnitude level, a log-scale may be useful; on the other hand, if you are testing the convergence of a numerical simulation and you want to show that the results from different resolutions are consistent to a very high accuracy, you may want to plot fractional differences instead.
+
+\Header{9. Use space wisely}
+
+If your data occupy a tiny fraction of the plot, you aren't just wasting valuable space on a publication page, you are also making it harder to spot interesting trends.  If you were to print out your plot on a page, could you see the important features when you hold it at arm's length?
+
+\Header{10. Include error bars}
+
+Show the uncertainties on the data.  But show uncertainties in models, too.  For example, if the model comes from a Monte Carlo simulation, bootstrapping may provide an estimate of sampling uncertainty; if the model has uncertain input parameters, evaluating the model over a range of parameters could indicate the uncertainty in the output.  Including uncertainties tells you which trends / mismatches are significant and which are likely ignorable artefacts.
+
+\vspace{0.3in}
+
+Of course, this list is not complete.  For example, it does not address one of the key questions that comes up in analysing plots: what features to focus on?  There is no single answer (though see the last commandment about not over-interpreting data or modelling artefacts).  Rather, this is where the physics often lives: identifying interesting and relevant behaviour without getting too bogged down in the details.  One general advice is to start big before going small: first focus on the global trends (is there a large-scale correlation? does it match the anticipated behaviour you sketched before looking at the plot?), only then decide whether fine details (what is that little wiggle at the edge of the plot?) are worth your attention.
+
+\vspace{0.1in} 
+
+Thanks to Arash Bahramian, Floor Broekgaarden, and Reinhold Willcox for great suggestions.  There are plenty of other great references online -- for example, \href{https://github.com/cxli233/FriendsDontLetFriends}{Friends don't let friends}.
+
+\end{document}
